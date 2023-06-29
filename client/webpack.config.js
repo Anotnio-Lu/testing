@@ -29,6 +29,8 @@ module.exports = () => {
         swDest: 'service-worker.js',
       }), 
       new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
         name: 'Text Editor',
         short_name: 'Editor',
         description: 'A text editor built as a PWA',
