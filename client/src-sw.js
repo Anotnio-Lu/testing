@@ -29,14 +29,12 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 // TODO: Implement asset caching
 registerRoute(
   ({ request }) => {
-    console.log(request);
     return (
-      // CSS
       request.destination === 'style' ||
-      // JavaScript
       request.destination === 'script'
     );
   },
+  new CacheFirst(),
   new StaleWhileRevalidate({
     cacheName: 'static-resources',
     plugins: [
@@ -46,6 +44,7 @@ registerRoute(
     ],
   })
 );
+
 registerRoute(
   ({ request }) => request.destination === 'image',
   new CacheFirst({
